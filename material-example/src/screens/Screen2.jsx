@@ -1,10 +1,11 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import OptionButton from "../components/OptionButton";
 
-const Screen2 = () => {
+const Screen2 = (props) => {
   return (
     <View style={styles.container}>
-      <Text>Options</Text>
+      <OptionButton text="Title" onPress={props.toggleTitle} />
     </View>
   );
 };
