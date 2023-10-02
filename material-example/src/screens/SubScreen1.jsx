@@ -13,7 +13,7 @@ const SubScreen1 = ({ route }) => {
       blurRadius={1}
     >
       <View style={styles.overlay}>
-        <Text style={styles.title}>Fuck you</Text>
+        <Text style={styles.title}>Funk you</Text>
       </View>
     </ImageBackground>
   );
