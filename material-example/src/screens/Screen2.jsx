@@ -1,10 +1,15 @@
 import React from "react";
 import { StyleSheet, ScrollView } from "react-native";
 import OptionButton from "../components/OptionButton";
+import { useScrollToTop } from '@react-navigation/native';
 
 const Screen2 = (props) => {
+  const ref = React.useRef(null);
+
+  useScrollToTop(ref);
+
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={styles.container} ref={ref}>
       <OptionButton text="title" onPress={props.toggle1} />
       <OptionButton text="tabBarLabel" onPress={props.toggle2} />
       <OptionButton text="tabBarAccessibilityLabel" onPress={props.toggle3} />
