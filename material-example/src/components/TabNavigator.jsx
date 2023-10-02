@@ -5,8 +5,33 @@ import { createMaterialTopTabNavigator } from "@react-navigation/material-top-ta
 import Screen1 from "../screens/Screen1";
 import Screen2 from "../screens/Screen2";
 import Screen3 from "../screens/Screen3";
+import {
+  Dimensions,
+  StyleSheet,
+  View,
+  StatusBar as ReactStatus,
+} from "react-native";
+import MyTabBar from "./MyTabBar";
+import SubScreen1 from "../screens/SubScreen1";
 
 const Tab = createMaterialTopTabNavigator();
+const SubTab = createMaterialTopTabNavigator();
+
+const SubTabNavigator = () => {
+  return (
+    <SubTab.Navigator
+      tabBarPosition="bottom"
+      tabBar={(props) => <MyTabBar {...props} />}
+    >
+      <SubTab.Screen
+        name="SubTab1"
+        component={Screen1}
+        initialParams={{ texto: "This is the content of Screen 1." }}
+      />
+      <SubTab.Screen name="SubTab2" component={SubScreen1} />
+    </SubTab.Navigator>
+  );
+};
 
 const TabNavigator = () => {
   const [isVisible1, setIsVisible1] = useState(false);
@@ -129,7 +154,13 @@ const TabNavigator = () => {
 
   return (
     <Tab.Navigator
-      style={{ marginTop: 30 }}
+      id="TabNavigator"
+      initialRouteName="Home"
+      tabBarPosition="top"
+      initialLayout={Dimensions.get("window").width}
+      keyboardDismissMode="on-drag"
+      style={styles.container}
+      backBehavior="order"
       screenOptions={({ route }) => ({
         title: isVisible1 ? "TITULO" : undefined,
         tabBarLabel: isVisible2
@@ -219,7 +250,7 @@ const TabNavigator = () => {
           : undefined,
       })}
     >
-      <Tab.Screen name="Props" component={Screen1} />
+      <Tab.Screen name="Props" component={SubTabNavigator} />
       <Tab.Screen name="Options">
         {() => (
           <Screen2
@@ -259,5 +290,13 @@ const TabNavigator = () => {
     </Tab.Navigator>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginTop: ReactStatus.currentHeight,
+    width: "100%",
+  },
+});
 
 export default TabNavigator;
