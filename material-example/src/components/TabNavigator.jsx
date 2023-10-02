@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import { View, Text } from "react-native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import Screen1 from "../screens/Screen1";
 import Screen2 from "../screens/Screen2";
@@ -9,6 +8,7 @@ import {
   Dimensions,
   StyleSheet,
   View,
+  Text,
   StatusBar as ReactStatus,
 } from "react-native";
 import MyTabBar from "./MyTabBar";
